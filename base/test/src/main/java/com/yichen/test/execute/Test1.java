@@ -18,7 +18,7 @@ public class Test1 {
     private static Logger logger= LoggerFactory.getLogger(Test1.class);
 
     public static void main(String[] args) throws Exception{
-        String format="yyyy-MM-dd hh:mm:ss SSSS";
+        String format="yyyy-MM-dd hh:mm:ss SSS";
         SimpleDateFormat dateFormat=new SimpleDateFormat(format);
         String start,end,value;
         while(true){

@@ -15,7 +15,9 @@ public class TestController {
 
     @RequestMapping("/get")
     @ResponseBody
-    public String get(){
+    public String get()throws Exception{
+//        Thread.sleep(2000);
+//        System.out.println(">>> arrive");
         return "visit interface get";
     }
 
