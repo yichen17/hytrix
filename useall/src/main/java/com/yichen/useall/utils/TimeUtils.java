@@ -2,6 +2,7 @@ package com.yichen.useall.utils;
 
 import com.yichen.useall.constants.CommonConstants;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -33,8 +34,39 @@ public class TimeUtils {
         return sdf.format(new Date(Long.parseLong(timestamp)));
     }
 
+    /**
+     * 获取两个日期之间的时间戳,使用默认的日期格式 yyyy-MM-dd hh:mm:ss
+     * @param from 开始时间
+     * @param to 结束时间
+     * @return 两个日期的时间戳
+     */
+    public static Long getTimestampBetweenTwoDays(String from,String to){
+        return  getTimestampBetweenTwoDays(from,to,CommonConstants.DATE_FORMAT);
+    }
 
-    public static void main(String[] args) {
+    /**
+     * 取两个日期之间的时间戳
+     * @param from  开始时间
+     * @param to  结束时间
+     * @param format  指定日期格式
+     * @return 两个日期的时间戳
+     */
+    public static Long getTimestampBetweenTwoDays(String from,String to,String format){
+        try{
+            SimpleDateFormat sdf=new SimpleDateFormat(CommonConstants.DATE_FORMAT);
+            Date dateFrom=sdf.parse(from);
+            Date dateTo=sdf.parse(to);
+            return dateTo.getTime()-dateFrom.getTime();
+        }
+        catch (ParseException e) {
+            e.printStackTrace();
+            return -1L;
+        }
+    }
+
+
+
+    public static void main(String[] args)throws Exception {
         System.out.println(timeStampToDate("1634778053097"));
         Date date=new Date();
         System.out.println(date.getTime());
