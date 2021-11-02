@@ -38,4 +38,16 @@ public class HytrixController {
         return value;
     }
 
+    @RequestMapping("/show")
+    @ResponseBody
+    public String show(){
+//        测试是否抛出异常
+//        int i=1/0;
+        String value="";
+        System.out.println(">>> arrive");
+        value=testFeign.show();
+        System.out.println(">>> leave");
+        return value;
+    }
+
 }
