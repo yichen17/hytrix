@@ -12,6 +12,11 @@ import org.springframework.stereotype.Component;
 @Component
 public class TestFeignImpl implements TestFeign {
     @Override
+    public String show() {
+        return "this interface is block";
+    }
+
+    @Override
     public String get() {
         return "this interface is block";
     }

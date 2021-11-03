@@ -11,7 +11,7 @@ import org.springframework.context.annotation.Configuration;
  * @date 2021/10/15 9:20
  * @describe feign 重试配置
  */
-@Configuration
+//@Configuration
 public class GlobalFeignConfigure {
     public static int connectTimeOutMillis = 1000;
     public static int readTimeOutMillis = 3000;
