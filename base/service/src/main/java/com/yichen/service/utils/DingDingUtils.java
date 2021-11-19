@@ -2,16 +2,19 @@ package com.yichen.service.utils;
 
 import cn.hutool.http.HttpUtil;
 import com.alibaba.fastjson.JSON;
+import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
-import org.apache.commons.codec.binary.Base64;
+import org.apache.tomcat.util.codec.binary.Base64;
 
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
 import java.io.UnsupportedEncodingException;
+import java.math.BigDecimal;
 import java.net.URLEncoder;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.time.Instant;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -87,14 +90,54 @@ public class DingDingUtils {
         return result;
     }
 
-    public static void main(String[] args) throws NoSuchAlgorithmException, InvalidKeyException, UnsupportedEncodingException {
-        try {
-            Integer i = null;
-            if (i < 1) {
-
-            }
-        }catch(Exception e){
-            DingDingUtils.buildReqStr("异常====>"+e.getMessage(), true, null);
+    /**
+     * 简化合并版本
+     * @param url 钉钉url  https://oapi.dingtalk.com/robot/send?access_token=25595fb3f56732f742616489ea6d058c3dc3e06745ae5b47aac390a7b5d3bbe3 示例
+     * @param message 消息内容
+     * @param mobiles 手机号列表
+     * @param isSign   是否验签
+     * @param secret  验签 密钥   示例 =>  SEC2736979dfb97fa35a7015d8a0281670e81feed8f7aa0f3df48be74a6da663c48
+     */
+    public static  void sendDingDingMessage(String url,String message,List<String> mobiles,boolean isSign,String secret)throws Exception{
+        String dingUrl=null;
+        if(isSign){
+            long timestamp = Instant.now().toEpochMilli();
+            String stringToSign = timestamp + "\n" + secret;
+            Mac mac = Mac.getInstance("HmacSHA256");
+            mac.init(new SecretKeySpec(secret.getBytes("UTF-8"), "HmacSHA256"));
+            byte[] signData = mac.doFinal(stringToSign.getBytes("UTF-8"));
+            String sign = URLEncoder.encode(new String(Base64.encodeBase64(signData)), "UTF-8");
+            dingUrl = url+"&timestamp=" + timestamp + "&sign=" + sign;
         }
+        else{
+            dingUrl=url;
+        }
+        Map<String, Object> maps = new HashMap<>();
+        maps.put("content", "异常信息:"+message);
+        Map<String, List> mapPhone = new HashMap<>();
+        mapPhone.put("atMobiles", mobiles);
+        Map<String, Object> paramMap = new HashMap<>();
+        paramMap.put("msgtype", "text");
+        paramMap.put("text", maps);
+        paramMap.put("at", mapPhone);
+        String response = HttpUtil.post(dingUrl,JSON.toJSONString(paramMap));
+    }
+
+    public static void main(String[] args) throws Exception {
+//        try {
+//            Integer i = null;
+//            if (i < 1) {
+//
+//            }
+//        }catch(Exception e){
+//            DingDingUtils.buildReqStr("异常====>"+e.getMessage(), true, null);
+//        }
+
+//        sendDingDingMessage("","测试手机号报警", Lists.newArrayList("13552943027"));
+
+        BigDecimal a = new BigDecimal("22.2");
+        BigDecimal b = new BigDecimal("22.3");
+        System.out.println(a.compareTo(b));
+
     }
 }
