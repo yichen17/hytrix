@@ -40,28 +40,28 @@
             <property name="enableSubPackages" value="false"/>
         </javaClientGenerator>
         <!-- domainObjectName 大写 ，不然很麻烦 -->
-        <table tableName="t_vip_dz_order_data" domainObjectName="TVipDzOrderData" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false" >
+        <table tableName="t_vip_dz_order_data" domainObjectName="TVipDzOrderData"  >
             <!--设置自增主键-->
             <generatedKey column="id" sqlStatement="Mysql"></generatedKey>
             <!--用于配置不需要手动插入，即自动生成的，如修改时间-->
 <!--            <ignoreColumn column="c_create_time"></ignoreColumn>-->
 <!--            <ignoreColumn column="c_update_time"></ignoreColumn>-->
         </table>
-        <table tableName="t_vip_dz_oufei_data" domainObjectName="TVipDzOufeiData" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false" >
+        <table tableName="t_vip_dz_oufei_data" domainObjectName="TVipDzOufeiData">
             <!--设置自增主键-->
             <generatedKey column="id" sqlStatement="Mysql"></generatedKey>
             <!--用于配置不需要手动插入，即自动生成的，如修改时间-->
 <!--            <ignoreColumn column="c_create_time"></ignoreColumn>-->
 <!--            <ignoreColumn column="c_update_time"></ignoreColumn>-->
         </table>
-        <table tableName="t_vip_dz_recharge_record" domainObjectName="TVipDzRechargeRecord" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+        <table tableName="t_vip_dz_recharge_record" domainObjectName="TVipDzRechargeRecord" >
             <!--设置自增主键-->
             <generatedKey column="id" sqlStatement="Mysql"></generatedKey>
             <!--用于配置不需要手动插入，即自动生成的，如修改时间-->
 <!--            <ignoreColumn column="c_create_time"></ignoreColumn>-->
 <!--            <ignoreColumn column="c_update_time"></ignoreColumn>-->
         </table>
-        <table tableName="t_vip_dz_out_result" domainObjectName="TVipDzOutResult" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+        <table tableName="t_vip_dz_out_result" domainObjectName="TVipDzOutResult" >
             <!--设置自增主键-->
             <generatedKey column="id" sqlStatement="Mysql"></generatedKey>
             <!--用于配置不需要手动插入，即自动生成的，如修改时间-->
@@ -70,7 +70,7 @@
         </table>
 
 
-        <table tableName="t_vip_dz_in_result" domainObjectName="TVipDzInResult" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+        <table tableName="t_vip_dz_in_result" domainObjectName="TVipDzInResult" >
             <!--设置自增主键-->
             <generatedKey column="id" sqlStatement="Mysql"></generatedKey>
             <!--用于配置不需要手动插入，即自动生成的，如修改时间-->
