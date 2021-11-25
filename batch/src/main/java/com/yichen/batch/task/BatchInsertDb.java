@@ -26,17 +26,42 @@ public class BatchInsertDb implements CommandLineRunner {
 
     private static Logger logger= LoggerFactory.getLogger(BatchInsertDb.class);
 
+    private volatile int times=0;
+    private final int maxTimes=1000000;
+    private volatile int success=0;
+
     @Autowired
     private TTRiggerAnalyseDao dao;
 
     @Override
     public void run(String... args) throws Exception {
-        int sum=0;
-        for(int i=0;i<10000000;i++){
-            TTriggerAnalysePo record=TTriggerAnalysePo.builder().name(""+UUID.randomUUID())
-                    .amount(new BigDecimal(Math.random()*10000)).phone("").build();
-            sum+=dao.insert(record);
+        for(int i=0;i<30;i++){
+            new Thread(new MyTask(),"my task"+i).start();
         }
-        logger.info("执行完毕，插入条数 {}",sum);
+        logger.info("执行结束，一共{}个插入成功",success);
     }
+
+    public class MyTask implements Runnable{
+
+
+
+
+        @Override
+        public void run() {
+            while (times<maxTimes){
+                try{
+                    logger.info("插入{}",times);
+                    TTriggerAnalysePo record=TTriggerAnalysePo.builder().name(""+UUID.randomUUID())
+                            .amount(new BigDecimal(Math.random()*10000)).phone("").build();
+                    success+=dao.insert(record);
+                    times++;
+                    Thread.sleep(20);
+                }
+                catch (InterruptedException e){
+                    logger.error(e.getMessage());
+                }
+            }
+        }
+    }
+
 }
