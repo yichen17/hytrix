@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yichen.batch.dao.TTRiggerAnalyseDao" >
+    <insert id="insert" parameterType="com.yichen.batch.po.TTriggerAnalysePo" >
+        insert into t_trigger_analyse(amount,name,phone) values(#{records.amount,jdbcType=DECIMAL},
+        #{records.name,jdbcType=VARCHAR},#{records.phone,jdbcType=VARCHAR});
+    </insert>
+</mapper>
