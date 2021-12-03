@@ -25,16 +25,16 @@
             <property name="forceBigDecimals" value="false"/>
         </javaTypeResolver>
 
-        <javaModelGenerator targetPackage="com.jfbank.account.entity"
+        <javaModelGenerator targetPackage="com.thinkgem.jeesite.modules.clearing.entity.vip"
                             targetProject="G:/project/mybatis-generator/src/main/java">
             <property name="enableSubPackages" value="false"/>
             <property name="trimStrings" value="true"/>
         </javaModelGenerator>
-        <sqlMapGenerator targetPackage="mapping"
+        <sqlMapGenerator targetPackage="mappings.vip"
                          targetProject="G:/project/mybatis-generator/src/main/java">
             <property name="enableSubPackages" value="false"/>
         </sqlMapGenerator>
-        <javaClientGenerator targetPackage="com.jfbank.account.dao"
+        <javaClientGenerator targetPackage="com.thinkgem.jeesite.modules.clearing.dao.vip"
                              targetProject="G:/project/mybatis-generator/src/main/java"
                              type="XMLMAPPER">
             <property name="enableSubPackages" value="false"/>

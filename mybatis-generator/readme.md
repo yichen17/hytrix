@@ -26,3 +26,13 @@ public class MyResolver extends JavaTypeResolverDefaultImpl {
     <property name="forceBigDecimals" value="true"/>
 </javaTypeResolver>
 ```
+
+## generatorConfig 说明
++ generatorConfig-manage 和 jeesite 清结算对账 生成工具
++ generatorConfig-normal 常用类型
++ generatorConfig 现用版本
++ generatorConfig-perfect 优化版本
+
+## perfect 记录
+通过 idea 执行运行 mvn,提示 The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+但是直接通过 mvn mybatis-generator:generate 却可以
