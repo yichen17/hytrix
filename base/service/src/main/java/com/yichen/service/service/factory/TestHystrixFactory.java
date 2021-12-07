@@ -23,7 +23,16 @@ public class TestHystrixFactory implements FallbackFactory<TestFeign> {
     @Override
     public TestFeign create(Throwable throwable) {
         if(throwable!=null){
-            logger.error(throwable.getMessage()+" >>> "+ Arrays.toString(throwable.getStackTrace()));
+//            logger.error(throwable.getMessage()+" >>> "+ Arrays.toString(throwable.getStackTrace()));
+//            logger.error(throwable.getCause().toString());
+//            logger.error(throwable.getStackTrace().toString());
+
+//            int size=Math.min(5,throwable.getStackTrace().length);
+//            for(int i=0;i<throwable.getStackTrace().length;i++){
+//                logger.error(throwable.getStackTrace()[i].toString());
+//            }
+
+            logger.error("OrderApiFeign 触发降级 cause {},堆栈 => {}",throwable.getCause(),throwable.getStackTrace());
         }
         return new TestFeignImpl();
     }
