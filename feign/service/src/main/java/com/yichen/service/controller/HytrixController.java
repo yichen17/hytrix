@@ -1,13 +1,21 @@
 package com.yichen.service.controller;
 
+import com.alibaba.fastjson.JSON;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
 import com.yichen.service.model.ParamFromStreamDto;
 import com.yichen.service.service.feign.TestFeign;
+import feign.Feign;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import javax.annotation.Resource;
+
 
 /**
  * @author Qiuxinchao
@@ -20,8 +28,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @RequestMapping("/test")
 public class HytrixController {
 
-    @Autowired
+    private static Logger logger= LoggerFactory.getLogger(HytrixController.class);
+
+    @Resource
     private TestFeign testFeign;
+
+    @Autowired
+    private ApplicationContext applicationContext;
 
     @HystrixCommand(defaultFallback = "fallback",
     commandProperties = {@HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds",value = "5000"),
@@ -33,9 +46,13 @@ public class HytrixController {
     @RequestMapping("/get")
     @ResponseBody
     public String get(){
+
+
         System.out.println(">>> arrive");
         String value=testFeign.get();
         System.out.println(">>> leave");
+
+
         return value;
     }
 
